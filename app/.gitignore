@@ -10,7 +10,6 @@
 # Ignore supervisor.log file
 /supervisord.log
 
-
 # Ignore supervisord.pid file
 /supervisord.pid
 
