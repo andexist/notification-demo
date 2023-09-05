@@ -1,10 +1,21 @@
-
-###> symfony/framework-bundle ###
-/.env.local
-/.env.local.php
-/.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
-/var/
+# Ignore vendor directory (Composer dependencies)
 /vendor/
-###< symfony/framework-bundle ###
+
+# Ignore var directory (Symfony cache and logs)
+/var/
+
+# Ignore .vscode directory (Visual Studio Code IDE configuration)
+/.vscode/
+
+# Ignore supervisor.log file
+/supervisord.log
+
+
+# Ignore supervisord.pid file
+/supervisord.pid
+
+# Ignore sensitive data
+/config/secrets/
+
+# Ignore public bundles
+/public/bundles/

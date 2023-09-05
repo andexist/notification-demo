@@ -11,6 +11,9 @@ ENV COMPOSER_NO_INTERACTION 1
 
 COPY ./infra/nginx/*.conf /opt/docker/etc/nginx/vhost.common.d/
 
+# Define an alias for 'php bin/console'
+RUN echo 'alias sf="php bin/console"' >> ~/.bashrc
+
 #Crontab setup
 COPY ./infra/cron/* /etc/cron.d
 RUN chmod 0644 /etc/cron.d/crontab
