@@ -10,9 +10,9 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class CustommerSettingsFixtures extends Fixture implements DependentFixtureInterface
+class CustomerSettingsFixtures extends Fixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $customerSettings = new CustomerSettings();
         $customerSettings->setEmail('john@example.com');
