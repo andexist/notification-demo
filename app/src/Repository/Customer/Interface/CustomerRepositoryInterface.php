@@ -16,6 +16,8 @@ interface CustomerRepositoryInterface
 
     public function findOneBy(array $criteria, array $orderBy = null): ?Customer;
 
+    public function findOneByCode(string $code): ?Customer;
+
     public function count(array $criteria = []): int;
 
     public function persist(Customer $customer): void;

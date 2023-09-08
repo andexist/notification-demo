@@ -42,6 +42,11 @@ class CustomerRepository extends ServiceEntityRepository implements CustomerRepo
         return parent::findOneBy($criteria, $orderBy);
     }
 
+    public function findOneByCode(string $code): ?Customer
+    {
+        return $this->findOneBy(['code' => $code]);
+    }
+
     public function count(array $criteria = []): int
     {
         return parent::count($criteria);
