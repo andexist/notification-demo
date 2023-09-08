@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Service\NotificationSender\Config;
 
-use App\Exceptions\NotificationsSender\SenderClassNotFoundException;
-use App\Exceptions\NotificationsSender\SenderTypeNotSupportedException;
-use App\Exceptions\NotificationsSender\SendMethodNotFoundException;
+use App\Exception\NotificationsSender\SenderClassNotFoundException;
+use App\Exception\NotificationsSender\SenderTypeNotSupportedException;
+use App\Exception\NotificationsSender\SendMethodNotFoundException;
 use App\Services\NotificationSender\Senders\SMSSender;
 use App\Services\NotificationSender\Senders\EmailSender;
 
