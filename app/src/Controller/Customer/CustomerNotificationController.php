@@ -30,8 +30,6 @@ class CustomerNotificationController extends AbstractController
         $customer = $this->customerService->findOneByCode($code);
         $customerSettings = $customer->getCustomerSettings();
 
-        dd($this->notificationSerializer->deserialize($request->getContent()));
-
         $this->messageBus->dispatch(new SendNotificationMessage(
           new NotificationSenderDTO(
               $customerSettings->getNotificationType(),
@@ -42,7 +40,7 @@ class CustomerNotificationController extends AbstractController
       ));
 
       return $this->json([
-          'message' => 'OK'
+          'message' => sprintf("Message sent successfully via %s", $customerSettings->getNotificationType())
       ])->setStatusCode(Response::HTTP_OK);
    }
 }

@@ -7,8 +7,8 @@ namespace App\Service\NotificationSender\Config;
 use App\Exception\NotificationsSender\SenderClassNotFoundException;
 use App\Exception\NotificationsSender\SenderTypeNotSupportedException;
 use App\Exception\NotificationsSender\SendMethodNotFoundException;
-use App\Services\NotificationSender\Senders\SMSSender;
-use App\Services\NotificationSender\Senders\EmailSender;
+use App\Service\NotificationSender\Senders\SMSSender;
+use App\Service\NotificationSender\Senders\EmailSender;
 
 class NotificationSenderConfig
 {

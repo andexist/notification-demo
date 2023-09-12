@@ -36,6 +36,6 @@ class NotificationSerializer
             throw new EmptyNotificationJsonDataValueException();
         }
 
-        return $this->serializer->deserialize(json_encode($decodedData['body']), Message::class, 'json');
+        return $this->serializer->deserialize($data, Message::class, 'json');
     }
 }
