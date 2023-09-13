@@ -26,3 +26,13 @@ services:
     App\EventListener\ExceptionListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
+
+    App\QueueClient\RabbitMQ\RabbitMQClient:
+        arguments:
+            $host: '%env(RABBITMQ_HOST)%'
+            $port: '%env(RABBITMQ_PORT)%'
+            $user: '%env(RABBITMQ_USER)%'
+            $password: '%env(RABBITMQ_PASSWORD)%'
+            $vhost: '%env(RABBITMQ_VHOST)%'
+        public: true
+        shared: true    
