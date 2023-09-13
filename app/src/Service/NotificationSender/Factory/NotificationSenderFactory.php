@@ -17,7 +17,7 @@ class NotificationSenderFactory
         'email' => EmailSender::class,
     ];
 
-    public function getSenderClass(string $senderType): object
+    public function createSenderClass(string $senderType): object
     {
         $sender = $this->supportedSender($senderType);
 

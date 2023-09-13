@@ -14,7 +14,7 @@ class NotificationSenderService extends AbstractNotificationSender
 
     public function send(NotificationSenderDTO $dto)
     {
-        $sender = $this->senderFactory->getSenderClass($dto->getSenderType());
+        $sender = $this->senderFactory->createSenderClass($dto->getSenderType());
 
         return $sender->send($dto);
     }
