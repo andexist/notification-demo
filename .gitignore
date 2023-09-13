@@ -1,20 +1,23 @@
 # Ignore vendor directory (Composer dependencies)
-/vendor/
+/app/vendor/
 
 # Ignore var directory (Symfony cache and logs)
-/var/
+/app/var/
 
 # Ignore .vscode directory (Visual Studio Code IDE configuration)
 /.vscode/
 
 # Ignore supervisor.log file
-/supervisord.log
+/app/supervisord.log
 
 # Ignore supervisord.pid file
-/supervisord.pid
+/app/supervisord.pid
 
 # Ignore sensitive data
-/config/secrets/
+/app/config/secrets/
 
 # Ignore public bundles
-/public/bundles/
+/app/public/bundles/
+
+# Ignore RabbitMQ data
+/infra/rabbitmq/

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Service\NotificationSender\Config;
+namespace App\Service\NotificationSender\Factory;
 
 use App\Exception\NotificationsSender\SenderClassNotFoundException;
 use App\Exception\NotificationsSender\SenderTypeNotSupportedException;
@@ -10,7 +10,7 @@ use App\Exception\NotificationsSender\SendMethodNotFoundException;
 use App\Service\NotificationSender\Senders\SMSSender;
 use App\Service\NotificationSender\Senders\EmailSender;
 
-class NotificationSenderConfig
+class NotificationSenderFactory
 {
     public static $allowedSenders = [
         'sms' => SMSSender::class,

@@ -10,11 +10,19 @@ services:
     ports:
       - 3006:80
     networks:
-      - demonet  
+      - demonet
     volumes:
       - ./app:/app
-    command: bash -c "composer update --lock --prefer-source && supervisord"
-  
+    command: bash -c "composer install && supervisord"
+    depends_on:
+      - mysql-server
+      - rabbitmq
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
   mysql-server:
     image: mysql:8.0
     container_name: notification-db
@@ -25,13 +33,35 @@ services:
     ports:
       - 3307:3306
     networks:
-      - demonet  
+      - demonet
     volumes:
-      - mysql_data:/var/lib/mysql:rw   
+      - mysql_data:/var/lib/mysql:rw
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    restart: unless-stopped
+    volumes:
+      - ./infra/rabbitmq/data:/var/lib/rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - demonet
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
 volumes:
   mysql_data:
-   
+
 networks:
   demonet:
     name: app_network
