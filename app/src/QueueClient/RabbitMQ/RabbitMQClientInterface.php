@@ -9,6 +9,8 @@ use PhpAmqpLib\Channel\AMQPChannel;
 interface RabbitMQClientInterface
 {
     public function createChannel(): AMQPChannel;
-    public function closeConnection();
-    public function closeChannel();
+    public function publishToQueue(string $queueName, string $message): void;
+    public function consumeFromQueue(string $queueName, callable $callback): void;
+    public function closeConnection(): void;
+    public function closeChannel(): void;
 }
