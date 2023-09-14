@@ -6,6 +6,7 @@ namespace App\QueueClient\RabbitMQ;
 
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
 class RabbitMQClient implements RabbitMQClientInterface
 {
@@ -26,7 +27,41 @@ class RabbitMQClient implements RabbitMQClientInterface
           return $this->channel;
      }
 
-     public function closeConnection()
+     public function publishToQueue(string $queueName, string $message): void
+     {
+          $channel = $this->createChannel();
+          $channel->queue_declare($queueName, false, true, false, false);
+
+          $msg = new AMQPMessage($message);
+
+          $channel->basic_publish($msg, '', $queueName);
+          $this->closeChannel();
+     }
+
+     public function consumeFromQueue(string $queueName, callable $callback): void
+     {
+          $channel = $this->createChannel();
+          $channel->queue_declare($queueName, false, true, false, false);
+          
+          $channel->basic_qos(null, 1, null);
+          $channel->basic_consume(
+               $queueName,
+               '',
+               false,
+               false,
+               false,
+               false,
+               $callback
+          );
+
+          while (count($channel->callbacks)) {
+               $channel->wait();
+           }
+
+          $this->closeChannel();
+     }
+
+     public function closeConnection(): void
      {
           $this->closeChannel();
 
@@ -35,7 +70,7 @@ class RabbitMQClient implements RabbitMQClientInterface
           }
      }
 
-     public function closeChannel()
+     public function closeChannel(): void
      {
           if ($this->channel !== null && $this->channel->is_open()) {
                $this->channel->close();
