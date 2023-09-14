@@ -10,6 +10,7 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_NO_INTERACTION 1
 
 COPY ./infra/nginx/*.conf /opt/docker/etc/nginx/vhost.common.d/
+COPY ./infra/supervisor/*.conf /opt/docker/etc/supervisor.d/
 
 # Define an alias for 'php bin/console'
 RUN echo 'alias sf="php bin/console"' >> ~/.bashrc
