@@ -1,7 +1,9 @@
 export PROJECT_NAME=notification_app
 export IMAGE_NAME=notification_app
 export PROJECT_TITLE="Notification App Demo Version"
+export RABBITMQ_TITLE="RABBITMQ HOST"
 export PROJECT_HTTP_PORT=3006
+export RABBITMQ_HTTP_PORT=15672
 
 .SILENT:info
 
@@ -10,6 +12,10 @@ info:
 	echo "\033[92m${PROJECT_TITLE}\033[0m"
 	echo ""
 	echo "	- \033[35mHTTP:\033[0m : http://localhost:${PROJECT_HTTP_PORT}"
+	echo ""
+	echo "\033[92m${RABBITMQ_TITLE}\033[0m"
+	echo ""
+	echo "	- \033[35mHTTP:\033[0m : http://localhost:${RABBITMQ_HTTP_PORT}"
 	echo ""
 
 upd:
